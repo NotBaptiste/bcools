@@ -1,0 +1,11 @@
+header .menu li {
+	position: relative;
+}
+
+header .menu li .submenu {
+	left: auto !important;
+}
+
+.ip-header {
+	display: none !important;
+}
