@@ -1,0 +1,15 @@
+# Normalisation : tout le texte en LF dans le dépôt et dans la copie de travail.
+* text=auto eol=lf
+
+# Binaires : aucune conversion.
+*.jpg  binary
+*.jpeg binary
+*.png  binary
+*.gif  binary
+*.ico  binary
+*.pdf  binary
+*.psd  binary
+*.eot  binary
+*.ttf  binary
+*.woff binary
+*.otf  binary
