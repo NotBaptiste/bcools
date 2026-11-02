@@ -101,9 +101,9 @@ strong { font-weight: 600; color: var(--bleu-nuit); }
   z-index: 50;
 }
 
-.barre__logo { display: block; border: 0; margin-bottom: 2.6rem; }
+.barre__logo { display: block; border: 0; margin: 0 auto 2.6rem; }
 .barre__logo:hover { border: 0; }
-.barre__logo img { width: 64px; height: auto; display: block; }
+.barre__logo img { width: 72px; height: auto; display: block; margin: 0 auto; }
 
 .nav { flex: 1; }
 .nav ul { list-style: none; margin: 0; padding: 0; }
@@ -155,9 +155,31 @@ strong { font-weight: 600; color: var(--bleu-nuit); }
 
 .page {
   margin-left: var(--barre);
-  padding: 4rem 3rem 5rem;
-  max-width: 980px;
+  padding: 0 0 4rem;
 }
+
+/* Bandeau d'image, sur toute la largeur de la zone de droite */
+.banniere {
+  display: block;
+  width: 100%;
+  height: clamp(200px, 30vw, 360px);
+  object-fit: cover;
+  object-position: center;
+  background: var(--bleu-nuit);
+}
+
+/* Gouttière commune à tout ce qui suit la bannière */
+.contenu { padding: 3rem; }
+.banniere + .contenu { padding-top: 2.4rem; }
+
+/* Grille : par défaut deux colonnes, un bloc peut prendre toute la largeur */
+.grille {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.6rem;
+  align-items: start;
+}
+.grille > .plein { grid-column: 1 / -1; }
 
 .entete { margin-bottom: 2.8rem; }
 .entete__sur {
@@ -177,7 +199,7 @@ strong { font-weight: 600; color: var(--bleu-nuit); }
   border-radius: var(--rayon);
   padding: 2.2rem;
   box-shadow: var(--ombre);
-  margin-bottom: 1.6rem;
+  height: 100%;
 }
 .bloc > :last-child { margin-bottom: 0; }
 .bloc p { max-width: 68ch; }
@@ -186,11 +208,20 @@ strong { font-weight: 600; color: var(--bleu-nuit); }
    Projets
    -------------------------------------------------------------------------- */
 
-.projets { display: grid; gap: 1.4rem; }
+.projets {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  gap: 1.6rem;
+  align-items: start;
+}
+.projets > .plein { grid-column: 1 / -1; }
 
 .projet {
   --teinte: var(--cyan);
   position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   background: var(--blanc);
   border-radius: var(--rayon);
   padding: 2rem 2rem 2rem 2.4rem;
@@ -198,6 +229,7 @@ strong { font-weight: 600; color: var(--bleu-nuit); }
   overflow: hidden;
   transition: transform var(--transition), box-shadow var(--transition);
 }
+.projet__lien { margin-top: auto; }
 .projet::before {
   content: '';
   position: absolute;
@@ -370,7 +402,10 @@ strong { font-weight: 600; color: var(--bleu-nuit); }
   .social { margin: 0 0 0 auto; }
   .mentions { display: none; }
 
-  .page { margin-left: 0; padding: 2.4rem 1rem 3.5rem; }
+  .page { margin-left: 0; padding: 0 0 3rem; }
+  .banniere { height: clamp(150px, 40vw, 220px); }
+  .contenu, .banniere + .contenu { padding: 1.8rem 1rem; }
+  .grille, .projets { grid-template-columns: 1fr; gap: 1.1rem; }
   .bloc, .projet { padding: 1.5rem; }
   .projet { padding-left: 1.8rem; }
   .cv__ligne { grid-template-columns: 1fr; gap: .3rem; }
@@ -382,8 +417,15 @@ strong { font-weight: 600; color: var(--bleu-nuit); }
   .projet:hover, .bouton:hover { transform: none; }
 }
 
+/* Entre 861 et 1150 px, deux colonnes serrent trop : on repasse à une. */
+@media (min-width: 861px) and (max-width: 1150px) {
+  .grille { grid-template-columns: 1fr; }
+}
+
 @media print {
-  .barre, .bouton { display: none; }
-  .page { margin: 0; max-width: none; padding: 0; }
-  .bloc, .projet { box-shadow: none; border: 1px solid var(--gris-ligne); }
+  .barre, .bouton, .banniere { display: none; }
+  .page { margin: 0; padding: 0; }
+  .contenu { padding: 0; }
+  .grille, .projets { grid-template-columns: 1fr; }
+  .bloc, .projet { box-shadow: none; border: 1px solid var(--gris-ligne); height: auto; }
 }

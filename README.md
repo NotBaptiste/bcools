@@ -53,17 +53,19 @@ CSS. Pas de framework, pas de JavaScript, icônes en SVG inline.
 Pour ajouter un projet : copier un bloc `<article class="projet">` dans
 `projets.html` et lui donner sa couleur via `style="--teinte: #xxxxxx"`.
 
-## Mettre le CV en ligne
+## Mise en page
 
-Déposer le PDF à la racine sous le nom `cv-baptiste-cools.pdf`, puis remplacer
-dans `cv.html` le bloc `bouton--sourd` par :
+La zone de droite est une grille à deux colonnes (`.grille`). Un bloc qui porte
+aussi la classe `plein` occupe toute la largeur. Même principe pour les cartes
+projet (`.projets` + `.plein`).
 
-```html
-<a class="bouton" href="cv-baptiste-cools.pdf" download>
-  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16l-6-6h4V3h4v7h4l-6 6zm-8 2h16v3H4v-3z"/></svg>
-  Télécharger mon CV
-</a>
-```
+Les pages À propos et Contact ouvrent sur une bannière pleine largeur
+(`.banniere`), les autres commencent directement par le titre.
+
+## Mettre le CV à jour
+
+Remplacer `cv-baptiste-cools.pdf` à la racine. Le bouton de la page Parcours
+pointe dessus, rien d'autre à changer.
 
 ## Documentation
 
