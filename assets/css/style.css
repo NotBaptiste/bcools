@@ -102,6 +102,10 @@ strong { font-weight: 600; color: var(--bleu-nuit); }
   z-index: 50;
 }
 
+/* Bouton hamburger : invisible au-dessus de 860 px, où le menu est déjà
+   déplié dans la colonne de gauche. */
+.burger { display: none; }
+
 .barre__logo { display: block; border: 0; margin: 0 auto 2.6rem; }
 .barre__logo:hover { border: 0; }
 .barre__logo img { width: 112px; height: auto; display: block; margin: 0 auto; }
@@ -284,6 +288,20 @@ strong { font-weight: 600; color: var(--bleu-nuit); }
 .projet__lien:hover { color: var(--blanc); }
 .projet__lien:hover::after { transform: translateX(3px); }
 
+/* Couleur de chaque projet, en classe plutôt qu'en attribut style :
+   une politique de sécurité stricte peut ainsi interdire le style en ligne. */
+.projet--baptiste { --teinte: var(--c-baptiste); }
+.projet--clope    { --teinte: var(--c-clope); }
+.projet--dryers   { --teinte: var(--c-dryers); }
+.projet--gille    { --teinte: var(--c-gille); }
+.projet--chti     { --teinte: var(--c-chti); }
+.projet--chat     { --teinte: var(--c-chat); }
+
+/* Trois espacements verticaux, pour remplacer les margin-top en ligne. */
+.marge-m  { margin-top: 1.4rem; }
+.marge-l  { margin-top: 1.8rem; }
+.marge-xl { margin-top: 2rem; }
+
 /* --------------------------------------------------------------------------
    Boutons
    -------------------------------------------------------------------------- */
@@ -401,22 +419,85 @@ strong { font-weight: 600; color: var(--bleu-nuit); }
    -------------------------------------------------------------------------- */
 
 @media (max-width: 860px) {
+  /* Bandeau : hamburger à gauche, logo à droite. */
   .barre {
-    position: static;
+    position: sticky;
+    top: 0;
     width: auto;
     flex-direction: row;
-    flex-wrap: wrap;
     align-items: center;
     gap: 1rem;
-    padding: 1.1rem 1rem;
+    padding: .8rem 1rem;
   }
-  .barre__logo { margin: 0; }
-  .barre__logo img { width: 56px; }
-  .nav { flex: 1 0 100%; order: 3; }
-  .nav ul { display: flex; flex-wrap: wrap; gap: .25rem; }
+  .barre__logo { margin: 0 0 0 auto; }
+  .barre__logo img { width: 52px; }
+
+  .burger {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    position: relative;
+    z-index: 70;
+    padding: .6rem .2rem;
+    min-height: 44px;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    color: rgba(255, 255, 255, .85);
+    font-family: 'Poppins', system-ui, sans-serif;
+    font-size: .82rem;
+    font-weight: 500;
+  }
+
+  /* Les trois barres : la ligne du milieu est l'élément lui-même, les deux
+     autres sont ses pseudo-éléments. */
+  .burger__lignes,
+  .burger__lignes::before,
+  .burger__lignes::after {
+    display: block;
+    width: 22px;
+    height: 2px;
+    border-radius: 2px;
+    background: currentColor;
+    transition: transform var(--transition), opacity var(--transition);
+  }
+  .burger__lignes { position: relative; }
+  .burger__lignes::before,
+  .burger__lignes::after { content: ''; position: absolute; left: 0; }
+  .burger__lignes::before { top: -7px; }
+  .burger__lignes::after { top: 7px; }
+
+  /* Ouvert : les barres se croisent en X. */
+  .barre[data-menu='ouvert'] .burger__lignes { background: transparent; }
+  .barre[data-menu='ouvert'] .burger__lignes::before { transform: translateY(7px) rotate(45deg); }
+  .barre[data-menu='ouvert'] .burger__lignes::after { transform: translateY(-7px) rotate(-45deg); }
+
+  /* Le menu se déplie par-dessus la page. */
+  .nav {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    display: grid;
+    align-content: center;
+    padding: 2rem 1.5rem;
+    background: var(--bleu-nuit);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity var(--transition), transform var(--transition), visibility var(--transition);
+  }
+  .barre[data-menu='ouvert'] .nav { opacity: 1; visibility: visible; transform: none; }
+
+  .nav ul { display: grid; gap: .3rem; }
   .nav li + li { margin-top: 0; }
-  .nav a { padding: .45rem .8rem; font-size: .9rem; }
-  .nav a[aria-current='page'] { box-shadow: inset 0 -3px 0 var(--cyan); }
+  .nav a {
+    display: flex;
+    align-items: center;
+    min-height: 56px;
+    padding: .6rem 1.1rem;
+    font-size: 1.25rem;
+  }
+  .nav a[aria-current='page'] { box-shadow: inset 3px 0 0 var(--cyan); }
   .mentions { display: none; }
 
   .page { margin-left: 0; padding: 0 0 3rem; }
@@ -424,7 +505,6 @@ strong { font-weight: 600; color: var(--bleu-nuit); }
   .contenu, .banniere + .contenu { padding: 1.8rem 1rem; }
   .grille { grid-template-columns: 1fr; gap: 1.1rem; }
   .projets { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .9rem; }
-  .nav a { min-height: 44px; display: flex; align-items: center; }
   .bloc { padding: 1.5rem; }
   .projet { padding: 1.3rem 1.1rem; }
   .cv__ligne { grid-template-columns: 1fr; gap: .3rem; }

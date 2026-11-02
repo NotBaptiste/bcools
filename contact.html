@@ -4,13 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Contact · Baptiste Cools</title>
-<meta name="description" content="Une idée, un projet, une question ? Écrivez-moi à contact@bcools.me.">
+<meta name="description" content="Un projet, une idée, une question ? Baptiste Cools, Content Manager et marketing digital. Écrivez-moi à contact@bcools.me.">
 <link rel="canonical" href="https://bcools.me/contact.html">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Contact · Baptiste Cools">
-<meta property="og:description" content="Une idée, un projet, une question ? Écrivez-moi à contact@bcools.me.">
+<meta property="og:description" content="Un projet, une idée, une question ? Baptiste Cools, Content Manager et marketing digital. Écrivez-moi à contact@bcools.me.">
 <meta property="og:url" content="https://bcools.me/contact.html">
 <meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Baptiste Cools">
+<meta property="og:image" content="https://bcools.me/img/banniere-accueil.jpg">
+<meta property="og:image:width" content="1700">
+<meta property="og:image:height" content="751">
+<meta property="og:image:alt" content="Baptiste Cools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://bcools.me/img/banniere-accueil.jpg">
 <link rel="icon" href="img/favicon.ico" sizes="any">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,11 +28,16 @@
 <a class="saut" href="#contenu">Aller au contenu</a>
 
 <header class="barre">
+  <button class="burger" type="button" aria-expanded="false" aria-controls="menu-principal">
+    <span class="burger__lignes" aria-hidden="true"></span>
+    <span class="burger__texte">Menu</span>
+  </button>
+
   <a class="barre__logo" href="/" aria-label="Baptiste Cools, accueil">
-    <img src="img/Logo.png" alt="Logo de Baptiste Cools" width="64" height="72">
+    <img src="img/Logo.webp" alt="Logo de Baptiste Cools" width="64" height="72">
   </a>
 
-  <nav class="nav" aria-label="Navigation principale">
+  <nav class="nav" id="menu-principal" aria-label="Navigation principale">
     <ul>
       <li><a href="/">À propos</a></li>
       <li><a href="projets.html">Projets</a></li>
@@ -36,7 +48,7 @@
 
 
   <p class="mentions">© <span id="annee">2026</span> Baptiste Cools</p>
-  <script>document.getElementById("annee").textContent=new Date().getFullYear()</script>
+  <script src="assets/js/site.js" defer></script>
 </header>
 
 <main class="page" id="contenu">
@@ -54,7 +66,7 @@
         <h2>Travailler ensemble</h2>
         <p>Je prends en charge la partie opérationnelle d'une activité : site web, pages de vente, e-mailing, création de contenus, montage vidéo, suivi des résultats. Si vous portez un projet et que la partie technique ou éditoriale vous ralentit, c'est exactement là que je suis utile.</p>
         <p>Une idée encore floue, un chantier précis ou simplement l'envie d'échanger ? Écrivez-moi, on en discute 🙂</p>
-        <p style="margin-top:1.8rem;"><a class="contact__mail" href="mailto:contact@bcools.me">contact@bcools.me</a></p>
+        <p class="marge-l"><a class="contact__mail" href="mailto:contact@bcools.me">contact@bcools.me</a></p>
       </section>
     </div>
   </div>

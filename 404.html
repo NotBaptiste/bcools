@@ -13,11 +13,16 @@
 </head>
 <body>
 <header class="barre">
+  <button class="burger" type="button" aria-expanded="false" aria-controls="menu-principal">
+    <span class="burger__lignes" aria-hidden="true"></span>
+    <span class="burger__texte">Menu</span>
+  </button>
+
   <a class="barre__logo" href="/" aria-label="Baptiste Cools, accueil">
-    <img src="/img/Logo.png" alt="Logo de Baptiste Cools" width="64" height="72">
+    <img src="/img/Logo.webp" alt="Logo de Baptiste Cools" width="64" height="72">
   </a>
 
-  <nav class="nav" aria-label="Navigation principale">
+  <nav class="nav" id="menu-principal" aria-label="Navigation principale">
     <ul>
       <li><a href="/">À propos</a></li>
       <li><a href="/projets.html">Projets</a></li>
@@ -27,7 +32,7 @@
   </nav>
 
   <p class="mentions">© <span id="annee">2026</span> Baptiste Cools</p>
-  <script>document.getElementById("annee").textContent=new Date().getFullYear()</script>
+  <script src="/assets/js/site.js" defer></script>
 </header>
 
 <main class="page">
@@ -35,7 +40,7 @@
     <p class="erreur__code">404</p>
     <h1>Cette page n'existe plus</h1>
     <p>Le site a été entièrement refait. Il se peut que vous suiviez un ancien lien.</p>
-    <p style="margin-top:1.8rem;"><a class="bouton" href="/">Retour à l'accueil</a></p>
+    <p class="marge-l"><a class="bouton" href="/">Retour à l'accueil</a></p>
   </div>
 </main>
 </body>

@@ -4,28 +4,54 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Baptiste Cools · Marketing digital et création de contenus</title>
-<meta name="description" content="Indépendant en marketing digital et création de contenus dans le Nord. Je construis aussi mes propres projets autour de la vie simple, des habitudes et des addictions.">
+<meta name="description" content="Content Manager et marketing digital. J'assiste les entrepreneurs du web : création de contenus, sites, e-mailing, montage vidéo, suivi des résultats.">
 <link rel="canonical" href="https://bcools.me/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Baptiste Cools · Marketing digital et création de contenus">
-<meta property="og:description" content="Indépendant en marketing digital et création de contenus. Je construis aussi mes propres projets autour de la vie simple, des habitudes et des addictions.">
+<meta property="og:description" content="Content Manager et marketing digital. J'assiste les entrepreneurs du web : création de contenus, sites, e-mailing, montage vidéo, suivi des résultats.">
 <meta property="og:url" content="https://bcools.me/">
 <meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Baptiste Cools">
+<meta property="og:image" content="https://bcools.me/img/banniere-accueil.jpg">
+<meta property="og:image:width" content="1700">
+<meta property="og:image:height" content="751">
+<meta property="og:image:alt" content="Baptiste Cools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://bcools.me/img/banniere-accueil.jpg">
 <link rel="icon" href="img/favicon.ico" sizes="any">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind:wght@400;600&family=Poppins:wght@500;600;700&display=swap">
 <link rel="stylesheet" href="assets/css/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Baptiste Cools",
+  "url": "https://bcools.me/",
+  "image": "https://bcools.me/img/portrait.webp",
+  "jobTitle": "Content Manager & marketing digital",
+  "email": "contact@bcools.me",
+  "description": "Content Manager et marketing digital. J'assiste les entrepreneurs du web sur la création de contenus, les sites, l'e-mailing, le montage vidéo et le suivi des résultats.",
+  "knowsAbout": ["Marketing digital", "Création de contenus", "Référencement naturel", "E-mailing", "Montage vidéo", "WordPress", "Réseaux sociaux"],
+  "sameAs": ["https://baptistecools.com"]
+}
+</script>
 </head>
 <body>
 <a class="saut" href="#contenu">Aller au contenu</a>
 
 <header class="barre">
+  <button class="burger" type="button" aria-expanded="false" aria-controls="menu-principal">
+    <span class="burger__lignes" aria-hidden="true"></span>
+    <span class="burger__texte">Menu</span>
+  </button>
+
   <a class="barre__logo" href="/" aria-label="Baptiste Cools, accueil">
-    <img src="img/Logo.png" alt="Logo de Baptiste Cools" width="64" height="72">
+    <img src="img/Logo.webp" alt="Logo de Baptiste Cools" width="64" height="72">
   </a>
 
-  <nav class="nav" aria-label="Navigation principale">
+  <nav class="nav" id="menu-principal" aria-label="Navigation principale">
     <ul>
       <li><a href="/" aria-current="page">À propos</a></li>
       <li><a href="projets.html">Projets</a></li>
@@ -36,7 +62,7 @@
 
 
   <p class="mentions">© <span id="annee">2026</span> Baptiste Cools</p>
-  <script>document.getElementById("annee").textContent=new Date().getFullYear()</script>
+  <script src="assets/js/site.js" defer></script>
 </header>
 
 <main class="page" id="contenu">

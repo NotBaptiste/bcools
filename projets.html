@@ -11,6 +11,13 @@
 <meta property="og:description" content="Mes projets : la chaîne Baptiste Cools, Pose ta Clope, le Club des Dryers, Petit Gille et Le Chti Belge.">
 <meta property="og:url" content="https://bcools.me/projets.html">
 <meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Baptiste Cools">
+<meta property="og:image" content="https://bcools.me/img/banniere-accueil.jpg">
+<meta property="og:image:width" content="1700">
+<meta property="og:image:height" content="751">
+<meta property="og:image:alt" content="Baptiste Cools">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://bcools.me/img/banniere-accueil.jpg">
 <link rel="icon" href="img/favicon.ico" sizes="any">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,11 +28,16 @@
 <a class="saut" href="#contenu">Aller au contenu</a>
 
 <header class="barre">
+  <button class="burger" type="button" aria-expanded="false" aria-controls="menu-principal">
+    <span class="burger__lignes" aria-hidden="true"></span>
+    <span class="burger__texte">Menu</span>
+  </button>
+
   <a class="barre__logo" href="/" aria-label="Baptiste Cools, accueil">
-    <img src="img/Logo.png" alt="Logo de Baptiste Cools" width="64" height="72">
+    <img src="img/Logo.webp" alt="Logo de Baptiste Cools" width="64" height="72">
   </a>
 
-  <nav class="nav" aria-label="Navigation principale">
+  <nav class="nav" id="menu-principal" aria-label="Navigation principale">
     <ul>
       <li><a href="/">À propos</a></li>
       <li><a href="projets.html" aria-current="page">Projets</a></li>
@@ -36,7 +48,7 @@
 
 
   <p class="mentions">© <span id="annee">2026</span> Baptiste Cools</p>
-  <script>document.getElementById("annee").textContent=new Date().getFullYear()</script>
+  <script src="assets/js/site.js" defer></script>
 </header>
 
 <main class="page" id="contenu">
@@ -49,7 +61,7 @@
 
   <div class="projets">
 
-    <article class="projet" style="--teinte: var(--c-baptiste);">
+    <article class="projet projet--baptiste">
       <span class="etat">En cours</span>
       <h3><a href="https://baptistecools.com" target="_blank" rel="noopener">Baptiste Cools</a></h3>
       <p class="projet__phrase">Une vie simple dans un monde trop complexe.</p>
@@ -57,7 +69,7 @@
       <a class="projet__lien" href="https://baptistecools.com" target="_blank" rel="noopener">Voir</a>
     </article>
 
-    <article class="projet" style="--teinte: var(--c-clope);">
+    <article class="projet projet--clope">
       <span class="etat">En préparation</span>
       <h3><a href="https://posetaclope.com" target="_blank" rel="noopener">Pose ta Clope</a></h3>
       <p class="projet__phrase">Se libérer du tabac.</p>
@@ -65,7 +77,7 @@
       <a class="projet__lien" href="https://posetaclope.com" target="_blank" rel="noopener">Voir</a>
     </article>
 
-    <article class="projet" style="--teinte: var(--c-dryers);">
+    <article class="projet projet--dryers">
       <span class="etat">En préparation</span>
       <h3><a href="https://clubdesdryers.com" target="_blank" rel="noopener">Club des Dryers</a></h3>
       <p class="projet__phrase">La sobriété choisie.</p>
@@ -73,7 +85,7 @@
       <a class="projet__lien" href="https://clubdesdryers.com" target="_blank" rel="noopener">Voir</a>
     </article>
 
-    <article class="projet" style="--teinte: var(--c-gille);">
+    <article class="projet projet--gille">
       <span class="etat">En ligne</span>
       <h3><a href="https://www.petitgille.be" target="_blank" rel="noopener">Petit Gille</a></h3>
       <p class="projet__phrase">Le folklore belge, toute l'année.</p>
@@ -81,7 +93,7 @@
       <a class="projet__lien" href="https://www.petitgille.be" target="_blank" rel="noopener">Voir</a>
     </article>
 
-    <article class="projet" style="--teinte: var(--c-chti);">
+    <article class="projet projet--chti">
       <span class="etat">En préparation</span>
       <h3><a href="https://lechtibelge.fr" target="_blank" rel="noopener">Le Chti Belge</a></h3>
       <p class="projet__phrase">Aide informatique à domicile.</p>
@@ -89,7 +101,7 @@
       <a class="projet__lien" href="https://lechtibelge.fr" target="_blank" rel="noopener">Voir</a>
     </article>
 
-    <article class="projet" style="--teinte: var(--c-chat);">
+    <article class="projet projet--chat">
       <span class="etat">En préparation</span>
       <h3><a href="https://lechatetlasouris.fr" target="_blank" rel="noopener">Le Chat et la Souris</a></h3>
       <p class="projet__phrase">Garde de chat à domicile.</p>

@@ -4,6 +4,10 @@ RewriteEngine On
 RewriteCond %{ENV:HTTPS} !on
 RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+# Pas de listing de répertoire : sans ça, /img/ et /assets/ exposent
+# la liste complète des fichiers à qui tape l'adresse.
+Options -Indexes
+
 # Page d'erreur maison
 ErrorDocument 404 /404.html
 
@@ -20,17 +24,50 @@ Redirect 301 /CV_Cools_Baptiste.html https://bcools.me/cv.html
 Redirect 301 /about.html https://bcools.me/
 Redirect 301 /contact.php https://bcools.me/contact.html
 
-# Mise en cache des ressources statiques
+# --------------------------------------------------------------------------
+# En-têtes de sécurité
+# --------------------------------------------------------------------------
+<IfModule mod_headers.c>
+  # Forcer HTTPS pendant un an pour les visiteurs déjà venus.
+  # Sans includeSubDomains : www, mail et ftp existent et tous ne servent
+  # pas forcément du HTTPS valide.
+  Header always set Strict-Transport-Security "max-age=31536000"
+
+  # Interdire au navigateur de deviner le type d'un fichier.
+  Header always set X-Content-Type-Options "nosniff"
+
+  # Empêcher l'affichage du site dans une iframe (clickjacking).
+  Header always set X-Frame-Options "DENY"
+
+  # Ne pas fuiter l'adresse complète de la page en sortant du site.
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+
+  # Le site n'a besoin d'aucune de ces capacités : on les refuse.
+  Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+
+  # Politique de contenu stricte : rendue possible par l'absence totale de
+  # script et de style en ligne. Seules les polices Google sont autorisées.
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests"
+</IfModule>
+
+# Charset déclaré au niveau du serveur, pas seulement dans le HTML
+AddDefaultCharset UTF-8
+
+# --------------------------------------------------------------------------
+# Performance
+# --------------------------------------------------------------------------
 <IfModule mod_expires.c>
   ExpiresActive On
   ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
   ExpiresByType image/png "access plus 1 year"
   ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
   ExpiresByType image/x-icon "access plus 1 year"
+  ExpiresByType application/pdf "access plus 1 week"
   ExpiresByType text/html "access plus 1 hour"
 </IfModule>
 
-# Compression
 <IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json image/svg+xml
 </IfModule>
