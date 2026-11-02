@@ -440,11 +440,12 @@ strong { font-weight: 600; color: var(--bleu-nuit); }
     margin-left: auto;
     display: inline-flex;
     align-items: center;
-    gap: .6rem;
+    justify-content: center;
     position: relative;
     z-index: 70;
-    padding: .6rem .2rem;
-    min-height: 44px;
+    width: 44px;
+    height: 44px;
+    padding: 0;
     background: none;
     border: 0;
     cursor: pointer;
