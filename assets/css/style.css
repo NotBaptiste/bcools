@@ -219,17 +219,19 @@ strong { font-weight: 600; color: var(--bleu-nuit); }
 }
 .projet:hover { transform: translateY(-4px); box-shadow: var(--ombre-forte); }
 
+/* Discrète par construction : c'est une indication de statut, pas un
+   argument. Elle ne doit pas concurrencer le titre ni la tagline. */
 .etat {
   align-self: flex-start;
   font-family: 'Poppins', system-ui, sans-serif;
-  font-size: .64rem;
+  font-size: .56rem;
   font-weight: 600;
-  letter-spacing: .09em;
+  letter-spacing: .08em;
   text-transform: uppercase;
-  padding: .22rem .6rem;
+  padding: .15rem .5rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, .22);
-  color: var(--blanc);
+  background: rgba(255, 255, 255, .16);
+  color: rgba(255, 255, 255, .88);
   white-space: nowrap;
 }
 
