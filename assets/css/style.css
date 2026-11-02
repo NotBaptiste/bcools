@@ -220,11 +220,12 @@ strong { font-weight: 600; color: var(--bleu-nuit); }
   --teinte: var(--cyan);
   display: flex;
   flex-direction: column;
-  gap: .55rem;
+  gap: .8rem;
+  min-height: 360px;
   background: var(--teinte);
   color: rgba(255, 255, 255, .92);
-  border-radius: var(--rayon);
-  padding: 1.5rem 1.3rem;
+  border-radius: 18px;
+  padding: 1.9rem 1.6rem;
   box-shadow: var(--ombre);
   transition: transform var(--transition), box-shadow var(--transition);
 }
@@ -245,9 +246,9 @@ strong { font-weight: 600; color: var(--bleu-nuit); }
 }
 
 .projet h3 {
-  margin: 0;
-  font-size: 1.12rem;
-  line-height: 1.25;
+  margin: .4rem 0 0;
+  font-size: 1.25rem;
+  line-height: 1.22;
   color: var(--blanc);
 }
 .projet h3 a { color: inherit; border: 0; }
@@ -320,18 +321,25 @@ strong { font-weight: 600; color: var(--bleu-nuit); }
 
 .cv { display: grid; gap: 1.6rem; }
 
-/* Bloc profil : le portrait à gauche, le texte à droite */
-.profil {
+/* Le portrait vit HORS du cadre, posé sur le fond gris : sa bordure blanche
+   se détache ainsi au lieu de se fondre dans le blanc du bloc. */
+.profil-rangee {
   display: grid;
-  grid-template-columns: 190px minmax(0, 1fr);
-  gap: 2.2rem;
+  grid-template-columns: minmax(0, 300px) minmax(0, 1fr);
+  gap: 2.4rem;
   align-items: center;
 }
-/* Portrait détouré fourni par Baptiste, réduit à 440 px pour le web
-   (affiché à 190, donc net sur écran Retina). Sa transparence est native,
-   rien à découper. */
-.profil__photo { width: 190px; height: auto; display: block; }
-.profil__texte > :last-child { margin-bottom: 0; }
+/* Portrait détouré fourni par Baptiste, réduit à 440 px pour le web.
+   Sa transparence est native, rien à découper. */
+.profil__photo {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  filter: drop-shadow(0 10px 26px rgba(47, 62, 79, .18));
+}
+.profil-rangee .bloc > :last-child { margin-bottom: 0; }
 
 .cv__ligne { display: grid; grid-template-columns: 150px 1fr; gap: 1.6rem; }
 .cv__ligne + .cv__ligne { margin-top: 1.6rem; padding-top: 1.6rem; border-top: 1px solid var(--gris-ligne); }
@@ -417,9 +425,9 @@ strong { font-weight: 600; color: var(--bleu-nuit); }
   .projet { padding: 1.3rem 1.1rem; }
   .cv__ligne { grid-template-columns: 1fr; gap: .3rem; }
   .cv__ligne + .cv__ligne { margin-top: 1.3rem; padding-top: 1.3rem; }
-  .profil { grid-template-columns: 1fr; gap: 1.4rem; justify-items: center; text-align: center; }
-  .profil__photo { width: 150px; }
-  .profil .etiquettes { justify-content: center; }
+  .profil-rangee { grid-template-columns: 1fr; gap: 1.2rem; }
+  .profil__photo { max-width: 200px; }
+  .projet { min-height: 280px; padding: 1.5rem 1.2rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
