@@ -1,31 +1,63 @@
+# ==========================================================================
+# bcools.me
+# L'ordre des règles compte : elles sont lues de haut en bas.
+# ==========================================================================
+
 RewriteEngine On
 
-# Tout passe en HTTPS
+# --------------------------------------------------------------------------
+# 1. Tout passe en HTTPS, avant toute autre réécriture
+# --------------------------------------------------------------------------
 RewriteCond %{ENV:HTTPS} !on
 RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# Pas de listing de répertoire : sans ça, /img/ et /assets/ exposent
-# la liste complète des fichiers à qui tape l'adresse.
+# --------------------------------------------------------------------------
+# 2. Anciennes adresses
+#    Elles passent AVANT la règle générique qui retire le .html : sinon
+#    /CV_Cools_Baptiste.html deviendrait /CV_Cools_Baptiste, qui ne
+#    correspond à aucun fichier, et finirait en 404 au lieu d'arriver sur
+#    la page parcours.
+# --------------------------------------------------------------------------
+RewriteRule ^CV_Cools_Baptiste\.html$ https://bcools.me/parcours [R=301,L]
+RewriteRule ^cv\.html$ https://bcools.me/parcours [R=301,L]
+RewriteRule ^about\.html$ https://bcools.me/ [R=301,L]
+RewriteRule ^contact\.php$ https://bcools.me/contact [R=301,L]
+
+# --------------------------------------------------------------------------
+# 3. Adresses sans .html
+# --------------------------------------------------------------------------
+
+# /index.html et /projets.html renvoient vers / et /projets, une fois pour
+# toutes. Le test porte sur THE_REQUEST, c'est-à-dire la requête telle que
+# le navigateur l'a envoyée, et non sur le chemin déjà réécrit : sans ça,
+# la règle suivante relancerait celle-ci en boucle.
+RewriteCond %{THE_REQUEST} \s/+([^?\s]*?)index\.html[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
+RewriteCond %{THE_REQUEST} \s/+([^?\s]+?)\.html[\s?] [NC]
+RewriteRule ^ /%1 [R=301,L]
+
+# Et /projets sert le fichier projets.html, sans que l'adresse change.
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.+?)/?$ $1.html [L]
+
+# --------------------------------------------------------------------------
+# 4. Fichiers et dossiers protégés
+# --------------------------------------------------------------------------
+
+# Pas de listing : sans ça, /img/ et /assets/ exposent la liste complète
+# de leurs fichiers à qui tape l'adresse.
 Options -Indexes
 
-# Page d'erreur maison
-ErrorDocument 404 /404.html
-
-# Les fichiers de travail n'ont rien à faire en public
 RedirectMatch 404 /\.git
 RedirectMatch 404 /\.gitignore
 RedirectMatch 404 /\.gitattributes
 RedirectMatch 404 /README\.md
 
-# Anciennes adresses du site de 2017, redirigées plutôt que perdues.
-# URL absolues : sans elles, Apache reconstruit la cible avec le port et
-# renvoie vers https://bcools.me:443/..., qui marche mais s'affiche mal.
-Redirect 301 /CV_Cools_Baptiste.html https://bcools.me/cv.html
-Redirect 301 /about.html https://bcools.me/
-Redirect 301 /contact.php https://bcools.me/contact.html
+ErrorDocument 404 /404.html
 
 # --------------------------------------------------------------------------
-# En-têtes de sécurité
+# 5. En-têtes de sécurité
 # --------------------------------------------------------------------------
 <IfModule mod_headers.c>
   # Forcer HTTPS pendant un an pour les visiteurs déjà venus.
@@ -33,40 +65,32 @@ Redirect 301 /contact.php https://bcools.me/contact.html
   # pas forcément du HTTPS valide.
   Header always set Strict-Transport-Security "max-age=31536000"
 
-  # Interdire au navigateur de deviner le type d'un fichier.
   Header always set X-Content-Type-Options "nosniff"
-
-  # Empêcher l'affichage du site dans une iframe (clickjacking).
   Header always set X-Frame-Options "DENY"
-
-  # Ne pas fuiter l'adresse complète de la page en sortant du site.
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
-
-  # Le site n'a besoin d'aucune de ces capacités : on les refuse.
   Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), interest-cohort=()"
 
   # Politique de contenu stricte : rendue possible par l'absence totale de
   # script et de style en ligne. Seules les polices Google sont autorisées.
-  # Revalidation systématique des pages (voir le commentaire plus bas).
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests"
+
+  # Les pages portent les numéros de version du CSS et du JS : elles sont
+  # revalidées à chaque visite, avec un 304 si rien n'a changé.
   <FilesMatch "\.html$">
     Header set Cache-Control "no-cache, must-revalidate"
   </FilesMatch>
-
-  Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'; upgrade-insecure-requests"
 </IfModule>
 
-# Charset déclaré au niveau du serveur, pas seulement dans le HTML
 AddDefaultCharset UTF-8
 
 # --------------------------------------------------------------------------
-# Performance
+# 6. Performance
 # --------------------------------------------------------------------------
 <IfModule mod_expires.c>
   ExpiresActive On
-  # Une journée seulement : ces deux fichiers changent, et un cache long
-  # a déjà servi une feuille de style périmée pendant des heures.
-  # Les pages les appellent avec ?v=..., qui force le retéléchargement à
-  # chaque modification ; cette durée courte n'est que le filet de sécurité.
+  # Un jour sur le CSS et le JS : les pages les appellent avec ?v=...,
+  # qui force le retéléchargement à chaque modification. Cette durée
+  # courte n'est que le filet de sécurité si la version est oubliée.
   ExpiresByType text/css "access plus 1 day"
   ExpiresByType application/javascript "access plus 1 day"
   ExpiresByType image/png "access plus 1 year"
@@ -74,11 +98,6 @@ AddDefaultCharset UTF-8
   ExpiresByType image/webp "access plus 1 year"
   ExpiresByType image/x-icon "access plus 1 year"
   ExpiresByType application/pdf "access plus 1 week"
-  # Le HTML n'est jamais gardé sans revérifier : c'est lui qui porte les
-  # numéros de version du CSS et du JS. Une heure de cache suffisait à
-  # montrer une page périmée après une mise en ligne. Le navigateur
-  # revalide à chaque visite et reçoit un 304 si rien n'a changé, donc le
-  # coût est nul.
   ExpiresByType text/html "access plus 0 seconds"
 </IfModule>
 
