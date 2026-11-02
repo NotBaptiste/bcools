@@ -13,10 +13,12 @@ RedirectMatch 404 /\.gitignore
 RedirectMatch 404 /\.gitattributes
 RedirectMatch 404 /README\.md
 
-# Anciennes adresses du site de 2017, redirigées plutôt que perdues
-Redirect 301 /CV_Cools_Baptiste.html /cv.html
-Redirect 301 /about.html /
-Redirect 301 /contact.php /contact.html
+# Anciennes adresses du site de 2017, redirigées plutôt que perdues.
+# URL absolues : sans elles, Apache reconstruit la cible avec le port et
+# renvoie vers https://bcools.me:443/..., qui marche mais s'affiche mal.
+Redirect 301 /CV_Cools_Baptiste.html https://bcools.me/cv.html
+Redirect 301 /about.html https://bcools.me/
+Redirect 301 /contact.php https://bcools.me/contact.html
 
 # Mise en cache des ressources statiques
 <IfModule mod_expires.c>
