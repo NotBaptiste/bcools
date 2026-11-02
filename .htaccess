@@ -1,4 +1,34 @@
 RewriteEngine On
+
+# Tout passe en HTTPS
 RewriteCond %{ENV:HTTPS} !on
 RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
+# Page d'erreur maison
+ErrorDocument 404 /404.html
+
+# Les fichiers de travail n'ont rien à faire en public
+RedirectMatch 404 /\.git
+RedirectMatch 404 /\.gitignore
+RedirectMatch 404 /\.gitattributes
+RedirectMatch 404 /README\.md
+
+# Anciennes adresses du site de 2017, redirigées plutôt que perdues
+Redirect 301 /CV_Cools_Baptiste.html /cv.html
+Redirect 301 /about.html /
+Redirect 301 /contact.php /contact.html
+
+# Mise en cache des ressources statiques
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+  ExpiresByType text/html "access plus 1 hour"
+</IfModule>
+
+# Compression
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript
+</IfModule>

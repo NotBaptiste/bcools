@@ -1,103 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.google.com/schemas/sitemap/0.84">
-
-
-<url>
-<loc>http://cools-baptiste.be</loc>
-<lastmod>2017-05-15</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>http://cools-baptiste.be/index.html</loc>
-<lastmod>2017-05-15</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>http://cools-baptiste.be/about.html</loc>
-<lastmod>2017-05-15</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>http://cools-baptiste.be/projets.html</loc>
-<lastmod>2017-05-15</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>http://cools-baptiste.be/contact.html</loc>
-<lastmod>2017-05-15</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>http://cools-baptiste.be/single-four-coolsBaptiste.html</loc>
-<lastmod>2017-05-15</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>http://cools-baptiste.be/https://www.linkedin.com/in/baptiste-cools-851b8360/</loc>
-<lastmod>2017-05-15</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>http://cools-baptiste.be/https://www.facebook.com/baptiste.cools?ref=bookmarks</loc>
-<lastmod>2017-05-15</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>http://cools-baptiste.be/https://twitter.com/b_cools</loc>
-<lastmod>2017-05-15</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>http://cools-baptiste.be/single-four-aramBahoz.html</loc>
-<lastmod>2017-05-15</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>http://cools-baptiste.be/single-four-worldOfPop.html</loc>
-<lastmod>2017-05-15</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>http://cools-baptiste.be/single-four-mrWoof.html</loc>
-<lastmod>2017-05-15</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>http://cools-baptiste.be/single-four-studioTournai.html</loc>
-<lastmod>2017-05-15</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>http://cools-baptiste.be/single-four-anec.html</loc>
-<lastmod>2017-05-15</lastmod>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://bcools.me/</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://bcools.me/projets.html</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://bcools.me/cv.html</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://bcools.me/contact.html</loc>
+    <lastmod>2026-11-02</lastmod>
+    <priority>0.6</priority>
+  </url>
 </urlset>
