@@ -234,23 +234,37 @@ strong { font-weight: 600; color: var(--bleu-nuit); }
 }
 
 .projet h3 {
-  margin: .4rem 0 0;
-  font-size: 1.25rem;
-  line-height: 1.22;
+  margin: .5rem 0 0;
+  font-size: 1.65rem;
+  line-height: 1.12;
+  letter-spacing: -.01em;
   color: var(--blanc);
 }
 .projet h3 a { color: inherit; border: 0; }
-.projet h3 a:hover { border-bottom: 1px solid rgba(255, 255, 255, .6); }
+.projet h3 a:hover { border-bottom: 2px solid rgba(255, 255, 255, .6); }
 
+/* La tagline est la promesse du projet : elle doit se lire avant la
+   description. D'où le corps plus large, le blanc plein, et le filet qui
+   la sépare du paragraphe explicatif en dessous. */
 .projet__phrase {
   font-family: 'Poppins', system-ui, sans-serif;
-  font-size: .88rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, .78);
-  margin: 0;
+  font-size: 1.02rem;
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--blanc);
+  margin: 0 0 .2rem;
+  padding-bottom: .9rem;
+  border-bottom: 1px solid rgba(255, 255, 255, .28);
 }
 
-.projet p { margin: 0; font-size: .92rem; line-height: 1.55; }
+/* `:not()` indispensable : la tagline est elle aussi un <p>, et cette règle
+   venant après, elle écraserait sa taille et sa couleur. */
+.projet p:not(.projet__phrase) {
+  margin: 0;
+  font-size: .9rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, .82);
+}
 
 .projet__lien {
   display: inline-flex;
