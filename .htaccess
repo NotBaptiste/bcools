@@ -31,10 +31,12 @@ RewriteRule ^contact\.php$ https://bcools.me/contact [R=301,L]
 # toutes. Le test porte sur THE_REQUEST, c'est-à-dire la requête telle que
 # le navigateur l'a envoyée, et non sur le chemin déjà réécrit : sans ça,
 # la règle suivante relancerait celle-ci en boucle.
+# La cible est écrite en absolu : avec un chemin relatif, Apache
+# reconstruit l'adresse avec le port et renvoie vers bcools.me:443/...
 RewriteCond %{THE_REQUEST} \s/+([^?\s]*?)index\.html[\s?] [NC]
-RewriteRule ^ /%1 [R=301,L]
+RewriteRule ^ https://bcools.me/%1 [R=301,L]
 RewriteCond %{THE_REQUEST} \s/+([^?\s]+?)\.html[\s?] [NC]
-RewriteRule ^ /%1 [R=301,L]
+RewriteRule ^ https://bcools.me/%1 [R=301,L]
 
 # Et /projets sert le fichier projets.html, sans que l'adresse change.
 RewriteCond %{REQUEST_FILENAME} !-d
