@@ -48,10 +48,17 @@ Google Fonts.
 ## Structure
 
 Une seule feuille de style, `assets/css/style.css`, construite sur des variables
-CSS. Pas de framework, pas de JavaScript, icônes en SVG inline.
+CSS. Pas de framework, icônes en SVG inline.
 
-Pour ajouter un projet : copier un bloc `<article class="projet">` dans
-`projets.html` et lui donner sa couleur via `style="--teinte: #xxxxxx"`.
+Un seul fichier JavaScript, `assets/js/site.js` : l'année du copyright et le
+menu mobile. Le site reste lisible et navigable sans lui.
+
+Aucun `style=` en ligne et aucun script en ligne : c'est ce qui permet la
+politique de sécurité stricte posée dans le `.htaccess`. Ne pas en réintroduire.
+
+Pour ajouter un projet : copier un bloc `<article class="projet projet--xxx">`
+dans `projets.html`, et déclarer sa couleur dans le CSS à côté des autres
+(`.projet--clope { --teinte: var(--c-clope); }`).
 
 ## ⚠️ Après toute modification du CSS ou du JavaScript
 
