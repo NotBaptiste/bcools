@@ -21,6 +21,7 @@
   --c-dryers: #04a59f;
   --c-gille: #f9ae3b;
   --c-chti: #ef5055;
+  --c-chat: #a173e6;
 
   --barre: 260px;
   --rayon: 14px;
@@ -198,8 +199,8 @@ strong { font-weight: 600; color: var(--bleu-nuit); }
 
 .projets {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 1.1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.4rem;
   align-items: stretch;
 }
 
@@ -427,9 +428,7 @@ strong { font-weight: 600; color: var(--bleu-nuit); }
 }
 
 /* Les cartes projets descendent par paliers plutôt que de s'étrangler. */
-@media (max-width: 1250px) { .projets { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
-@media (max-width: 1080px) { .projets { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-@media (max-width: 940px)  { .projets { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 1080px) { .projets { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 @media print {
   .barre, .bouton, .banniere { display: none; }
