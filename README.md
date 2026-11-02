@@ -53,6 +53,19 @@ CSS. Pas de framework, pas de JavaScript, icônes en SVG inline.
 Pour ajouter un projet : copier un bloc `<article class="projet">` dans
 `projets.html` et lui donner sa couleur via `style="--teinte: #xxxxxx"`.
 
+## ⚠️ Après toute modification du CSS ou du JavaScript
+
+Incrémenter le `?v=` dans les cinq pages :
+
+```
+assets/css/style.css?v=20261102b
+assets/js/site.js?v=20261102b
+```
+
+Sans ça, les visiteurs déjà venus gardent l'ancienne version jusqu'à 24 h.
+C'est déjà arrivé une fois, avec un cache d'un mois : le site paraissait
+cassé alors que le serveur servait le bon fichier.
+
 ## Mise en page
 
 La zone de droite est une grille à deux colonnes (`.grille`). Un bloc qui porte
