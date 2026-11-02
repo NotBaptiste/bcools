@@ -429,10 +429,15 @@ strong { font-weight: 600; color: var(--bleu-nuit); }
     gap: 1rem;
     padding: .8rem 1rem;
   }
-  .barre__logo { margin: 0 0 0 auto; }
+  /* Le bouton est écrit avant le logo dans le HTML, pour que la navigation
+     au clavier l'atteigne en premier. L'ordre visuel est inversé ici :
+     logo à gauche, bouton à droite. */
+  .barre__logo { order: 1; margin: 0; }
   .barre__logo img { width: 52px; }
 
   .burger {
+    order: 2;
+    margin-left: auto;
     display: inline-flex;
     align-items: center;
     gap: .6rem;
@@ -486,6 +491,7 @@ strong { font-weight: 600; color: var(--bleu-nuit); }
     transform: translateY(-8px);
     transition: opacity var(--transition), transform var(--transition), visibility var(--transition);
   }
+  .nav { order: 3; }
   .barre[data-menu='ouvert'] .nav { opacity: 1; visibility: visible; transform: none; }
 
   .nav ul { display: grid; gap: .3rem; }

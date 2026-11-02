@@ -58,8 +58,12 @@ AddDefaultCharset UTF-8
 # --------------------------------------------------------------------------
 <IfModule mod_expires.c>
   ExpiresActive On
-  ExpiresByType text/css "access plus 1 month"
-  ExpiresByType application/javascript "access plus 1 month"
+  # Une journée seulement : ces deux fichiers changent, et un cache long
+  # a déjà servi une feuille de style périmée pendant des heures.
+  # Les pages les appellent avec ?v=..., qui force le retéléchargement à
+  # chaque modification ; cette durée courte n'est que le filet de sécurité.
+  ExpiresByType text/css "access plus 1 day"
+  ExpiresByType application/javascript "access plus 1 day"
   ExpiresByType image/png "access plus 1 year"
   ExpiresByType image/jpeg "access plus 1 year"
   ExpiresByType image/webp "access plus 1 year"
