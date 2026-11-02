@@ -87,6 +87,10 @@ Les pages À propos et Contact ouvrent sur une bannière pleine largeur
 Remplacer `cv-baptiste-cools.pdf` à la racine. Le bouton de la page Parcours
 pointe dessus, rien d'autre à changer.
 
+Le lien n'a **pas** d'attribut `download` : le PDF s'ouvre dans le navigateur
+plutôt que de s'enregistrer, ce qui est plus confortable sur téléphone. Le
+visiteur garde la possibilité de le télécharger depuis la visionneuse.
+
 ## Documentation
 
 Le contexte, l'architecture et le journal du projet vivent dans le vault Cleo,
